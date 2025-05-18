@@ -2,17 +2,21 @@
     This module provides ...
 """
 
-from ssh.ssh_command import ssh_run_command
+from ssh.ssh_command import ssh_run_jumped_command
 
 class Tracer:
-    def __init__(self, credentials):
-        self.credentials = credentials
+    def __init__(self, jump_host_ssh_credentials, target_host_ssh_credentials):
+        self.jump_host_ssh_credentials = jump_host_ssh_credentials
+        self.target_host_ssh_credentials = target_host_ssh_credentials
 
     def start(self):
-        ssh_run_command(host=self.credentials.host, username=self.credentials.username, password=self.credentials.password,
-                        cmd='echo "Starting traces on $HOSTNAME"')
+        result = ssh_run_jumped_command(jump_host_ssh_credentials=self.jump_host_ssh_credentials,
+                                        target_host_ssh_credentials=self.target_host_ssh_credentials,
+                                        cmd='echo "Starting traces on $HOSTNAME"').strip()
+        print(result)
 
     def stop(self):
-        ssh_run_command(host=self.credentials.host, username=self.credentials.username,
-                        password=self.credentials.password,
-                        cmd='echo "Stopping traces on $HOSTNAME"')
+        result = ssh_run_jumped_command(jump_host_ssh_credentials=self.jump_host_ssh_credentials,
+                                        target_host_ssh_credentials=self.target_host_ssh_credentials,
+                                        cmd='echo "Stopping traces on $HOSTNAME"').strip()
+        print(result)

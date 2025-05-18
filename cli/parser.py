@@ -5,13 +5,15 @@
 import argparse
 
 def create_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Simple SSH CLI using Paramiko")
     parser = argparse.ArgumentParser()
     parser.add_argument("--host_name", required=True, help="Name of the host")
+    parser.add_argument("--crash", required=True, help="Name of the host")
     parser.add_argument(
         "--ids",
         nargs='+',
         type=int,
-        help="A list of numbers"
+        help="A list of numbers",
+        required=True
     )
+
     return parser

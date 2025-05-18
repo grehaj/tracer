@@ -4,7 +4,8 @@
 
 import os
 import sys
-from dataclasses import dataclass
+
+from ssh.ssh_credentials import SSHCredentials
 
 def get_env_var(name: str) -> str:
     value = os.getenv(name)
@@ -13,20 +14,17 @@ def get_env_var(name: str) -> str:
         sys.exit(1)
     return value
 
-host = get_env_var("HOSTNAME")
-username = get_env_var("USERNAME")
-password = get_env_var("PASSWORD")
-
-@dataclass
-class SSHCredentials:
-    host: str
-    username: str
-    password: str
+audit_host = get_env_var("AUDIT_HOSTNAME")
+audit_username = get_env_var("AUDIT_USERNAME")
+audit_password = get_env_var("AUDIT_PASSWORD")
+trace_host = get_env_var("TRACE_HOSTNAME")
+trace_username = get_env_var("TRACE_USERNAME")
+trace_password = get_env_var("TRACE_PASSWORD")
 
 class ConfigManager:
     def __init__(self, host_name):
-        self.auditor_host_credentials = SSHCredentials(host=host, username=username, password=password)
-        self.trace_host_credentials = SSHCredentials(host=host, username=username, password=password)
+        self.auditor_host_credentials = SSHCredentials(host=audit_host, username=audit_username, password=audit_password)
+        self.trace_host_credentials = SSHCredentials(host=trace_host, username=trace_username, password=trace_password)
 
     def get_auditor_host_credentials(self):
         return self.auditor_host_credentials
