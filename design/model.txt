@@ -1,0 +1,12 @@
+1) Cli reads cli arguments
+2) Config object is created
+3) Auditor object is created
+4) Collector object is created
+5) while auditor do not see an error
+    - print info that no issue detected
+    - sleep for a minute
+6) stop collector
+7) store collected logs
+
+
+

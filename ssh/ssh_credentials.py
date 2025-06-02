@@ -6,6 +6,10 @@ from dataclasses import dataclass
 
 @dataclass
 class SSHCredentials:
-    host: str
-    username: str
+    user_name: str
     password: str
+
+@dataclass
+class SSHHost:
+    host_name: str
+    credentials: SSHCredentials

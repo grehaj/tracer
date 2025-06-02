@@ -1,0 +1,41 @@
+|----------------------------------------------------------------------------------------------------------|
+|----Who----|-------Action-------|------Whom------|-------------------------Result-------------------------|
+ Cli            reads               cli arguments   Host name
+                                                    User name
+                                                    Password
+                                                    Interface to monitor
+                                                    Local log directory
+                                                    Remote log directory
+                                                    Monitored log file
+                                                    Monitored log
+|----------------------------------------------------------------------------------------------------------|
+ Config         saves,               N/A            host_name,
+                retrieves                           user_name,
+                                                    password,
+                                                    interface,
+                                                    local_log_dir,
+                                                    remote_log_dir,
+                                                    monitored_log_fie
+                                                    monitored_log
+|----------------------------------------------------------------------------------------------------------|
+ Tracer(app)          run            Detector       collector runs remote tcpdump until error happens
+                                     Collector      and copy logs to the local host before termination
+
+|----------------------------------------------------------------------------------------------------------|
+ Auditor         run audit           SshCommand     Information if error occurred based on monitored log
+                                                    configuration.
+|----------------------------------------------------------------------------------------------------------|
+ Collector       starts              SshCommand     pid of the started tcpdump process
+|----------------------------------------------------------------------------------------------------------|
+ Collector       stops               SshCommand     process with pid killed
+|----------------------------------------------------------------------------------------------------------|
+ Collector       stores              SshCommand     copies logs to local log directory
+|----------------------------------------------------------------------------------------------------------|
+ SshCommand      runs fg command     paramiko       command output
+|----------------------------------------------------------------------------------------------------------|
+ SshCommand      runs bg command     paramiko       pid of the command
+|----------------------------------------------------------------------------------------------------------|
+ SshCommand      copy                paramiko       files copied from remote host
+|----------------------------------------------------------------------------------------------------------|
+
+

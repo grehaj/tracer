@@ -1,0 +1,61 @@
+Class: Cli
+Responsibilities:
+- reads cli arguments
+- returns parsed args object
+
+Co-workers:
+- N/A
+
+Attributes:
+- N/A
+
+Class: Config
+Responsibilities:
+- Saves
+- Gets
+Co-workers:
+- N/A
+- Attributes:
+    * host_name
+    * user_name
+    * password
+    * interface
+    * local_log_dir
+    * remote_log_dir
+    * monitored_fie
+    * monitored_log
+
+Class: Auditor
+Responsibilities:
+- run audit by running grep searching for the monitored log in the monitored file
+
+Co-workers:
+- Config
+- SshCommand
+
+Attributes:
+- Config
+
+Class: Collector
+Responsibilities:
+- start tcp dump
+- stops tcp dump
+- gets collected files
+
+Co-workers:
+- Config
+- SshCommand
+
+Attributes:
+- Config
+- tcp_dump pid
+
+Class: SshCommand
+Responsibilities:
+- run_command
+- run_background_command
+- copy
+
+Co-workers:
+- Config
+- paramiko
